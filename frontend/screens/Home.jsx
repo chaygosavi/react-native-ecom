@@ -10,6 +10,9 @@ import {colors, defaultStyle} from '../styles/styles';
 import Header from '../components/Header';
 import {Avatar, Button} from 'react-native-paper';
 import SearchModal from '../components/SearchModal';
+import ProductCard from '../components/ProductCard';
+import {useNavigation} from '@react-navigation/native';
+import Footer from '../components/Footer';
 
 const categories = [
   {category: 'Nice1', _id: 'sdfsdfadadrgwdawdwdsdf'},
@@ -25,20 +28,41 @@ const categories = [
 
 const products = [
   {
+    _id: 9,
     price: 999,
-    name: 'Sabon ki tikiya',
+    stock: 99,
+    name: 'Sabon',
     _id: 'sdfnwwui43uu',
     images: [
       {
-        url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsG4fG2P2kKxsY1m5OpvZnIt4vS8xTHwLeiA2RccQclw&s',
+        url: 'https://images.unsplash.com/photo-1661956600684-97d3a4320e45?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+      },
+    ],
+  },
+  {
+    _id: 9,
+    price: 999,
+    stock: 99,
+    name: 'SaEUUbon',
+    _id: 'sdfnwdwdwui43uu',
+    images: [
+      {
+        url: 'https://images.unsplash.com/photo-1661956600684-97d3a4320e45?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
       },
     ],
   },
 ];
+
+const addToCardHandler = id => {
+  console.log('Add to cart', id);
+};
+
 const Home = () => {
   const [category, setCategory] = useState('');
   const [activeSearch, setActiveSearch] = useState(false);
   const [searchQuery, setSeachQuery] = useState('');
+
+  const navigate = useNavigation();
 
   const categoryButtonHandler = id => {
     setCategory(id);
@@ -116,11 +140,28 @@ const Home = () => {
             ))}
           </ScrollView>
         </View>
+
+        <View style={{flex: 1}}>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            {products.map((item, idx) => (
+              <ProductCard
+                stock={item.stock}
+                name={item.name}
+                price={item.price}
+                image={item.images[0]?.url}
+                addToCardHandler={addToCardHandler}
+                id={item._id}
+                key={item._id}
+                i={idx}
+                navigate={navigate}
+              />
+            ))}
+          </ScrollView>
+        </View>
       </View>
+      <Footer activeRoute="home" />
     </>
   );
 };
 
 export default Home;
-
-const styles = StyleSheet.create({});

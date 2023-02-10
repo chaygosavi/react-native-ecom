@@ -15,8 +15,7 @@ export const defaultStyle = StyleSheet.create({
   padding: 35,
   paddingTop: Platform.OS === 'android' ? 10 : 0,
   flex: 1,
-  //   backgroundColor: colors.color2,
-  backgroundColor: 'red',
+  backgroundColor: colors.color2,
 });
 
 export const inputStyle = StyleSheet.create({
