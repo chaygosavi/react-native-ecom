@@ -9,6 +9,7 @@ const CartItem = ({
   decrementHandler,
   i: {name, price: amount, quantity: qty, stock, image: imgSrc},
   id,
+  navigate,
 }) => {
   console.log('sdfsdfsdfsdf', name, amount, qty, stock, imgSrc);
 
@@ -42,7 +43,10 @@ const CartItem = ({
           width: '40%',
           paddingHorizontal: 25,
         }}>
-        <Text numberOfLines={1} style={{fontSize: 17}}>
+        <Text
+          numberOfLines={1}
+          style={{fontSize: 17}}
+          onPress={() => navigate.navigate('productdetails', {id})}>
           {name}
         </Text>
         <Text numberOfLines={1} style={{fontSize: 17, fontWeight: '900'}}>
