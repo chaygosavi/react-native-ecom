@@ -26,7 +26,7 @@ const categories = [
   {category: 'Nice9', _id: 'sdfsdadafwvadwdsdf'},
 ];
 
-const products = [
+export const products = [
   {
     _id: 9,
     price: 999,

@@ -1,20 +1,21 @@
-import {View, Text} from 'react-native';
-import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Home from './screens/Home';
-import ProductDetails from './screens/ProductDetails';
+import React from 'react';
 import Toast from 'react-native-toast-message';
+import AdminPanel from './screens/Admin/AdminPanel';
 import Cart from './screens/Cart';
-import ConfirmOrder from './screens/ConfirmOrder';
-import Payment from './screens/Payment';
-import Login from './screens/Login';
-import ForgetPassword from './screens/ForgetPassword';
-import Verify from './screens/Verify';
-import SignUp from './screens/SignUp';
-import Profile from './screens/Profile';
-import UpdateProfile from './screens/UpdateProfile';
 import ChangePassword from './screens/ChangePassword';
+import ConfirmOrder from './screens/ConfirmOrder';
+import ForgetPassword from './screens/ForgetPassword';
+import Home from './screens/Home';
+import Login from './screens/Login';
+import Orders from './screens/Orders';
+import Payment from './screens/Payment';
+import ProductDetails from './screens/ProductDetails';
+import Profile from './screens/Profile';
+import SignUp from './screens/SignUp';
+import UpdateProfile from './screens/UpdateProfile';
+import Verify from './screens/Verify';
 
 const Stack = createNativeStackNavigator();
 
@@ -37,6 +38,8 @@ const App = () => {
           <Stack.Screen name="profile" component={Profile} />
           <Stack.Screen name="updateprofile" component={UpdateProfile} />
           <Stack.Screen name="changepassword" component={ChangePassword} />
+          <Stack.Screen name="orders" component={Orders} />
+          <Stack.Screen name="adminpanel" component={AdminPanel} />
         </Stack.Group>
       </Stack.Navigator>
       <Toast position="top" />
