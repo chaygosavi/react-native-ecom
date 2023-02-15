@@ -6,11 +6,29 @@ import Loader from '../../components/Loader';
 import ButtonBox from '../../components/ButtonBox';
 import ProductListHeading from '../../components/ProductListHeading';
 import {products} from '../Home';
+import ProductListItem from '../../components/ProductListItem';
+import Chart from '../../components/Chart';
 
-const AdminPanel = () => {
+const AdminPanel = ({navigation}) => {
   const loading = false;
 
-  const navigationHandler = () => {};
+  const navigationHandler = text => {
+    switch (text) {
+      case 'Category':
+        navigation.navigate('categories');
+        break;
+      case 'All Orders':
+        navigation.navigate('adminorders');
+        break;
+      case 'Product':
+        navigation.navigate('newproduct');
+        break;
+      default:
+        navigation.navigate('adminorders');
+        break;
+    }
+  };
+  const deleteProductHandler = id => {};
 
   return (
     <View style={defaultStyle}>
@@ -32,7 +50,9 @@ const AdminPanel = () => {
               backgroundColor: colors.color3,
               borderRadius: 20,
               alignItems: 'center',
-            }}></View>
+            }}>
+            <Chart inStock={6} outOfStock={14} />
+          </View>
 
           <View>
             <View
@@ -63,9 +83,20 @@ const AdminPanel = () => {
 
           <ScrollView showsVerticalScrollIndicator={false}>
             <View>
-              {/* {products.map((item, index) => (
-
-                    ))} */}
+              {products.map((item, index) => (
+                <ProductListItem
+                  key={item._id}
+                  id={item._id}
+                  i={index}
+                  price={item.price}
+                  stock={item.stock}
+                  name={item.name}
+                  category={item.category}
+                  imgSrc={item.images[0].url}
+                  navigate={navigation}
+                  deleteHandler={deleteProductHandler}
+                />
+              ))}
             </View>
           </ScrollView>
         </>

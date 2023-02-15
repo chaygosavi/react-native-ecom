@@ -2,7 +2,9 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import Toast from 'react-native-toast-message';
+import AdminOrders from './screens/Admin/AdminOrders';
 import AdminPanel from './screens/Admin/AdminPanel';
+import Categories from './screens/Admin/Categories';
 import Cart from './screens/Cart';
 import ChangePassword from './screens/ChangePassword';
 import ConfirmOrder from './screens/ConfirmOrder';
@@ -40,6 +42,8 @@ const App = () => {
           <Stack.Screen name="changepassword" component={ChangePassword} />
           <Stack.Screen name="orders" component={Orders} />
           <Stack.Screen name="adminpanel" component={AdminPanel} />
+          <Stack.Screen name="categories" component={Categories} />
+          <Stack.Screen name="adminorders" component={AdminOrders} />
         </Stack.Group>
       </Stack.Navigator>
       <Toast position="top" />

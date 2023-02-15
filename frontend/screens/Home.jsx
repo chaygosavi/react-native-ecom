@@ -31,6 +31,7 @@ export const products = [
     _id: 9,
     price: 999,
     stock: 99,
+    category: 'IDK',
     name: 'Sabon',
     _id: 'sdfnwwui43uu',
     images: [
@@ -43,6 +44,7 @@ export const products = [
     _id: 9,
     price: 999,
     stock: 99,
+    category: 'Laptop',
     name: 'SaEUUbon',
     _id: 'sdfnwdwdwui43uu',
     images: [

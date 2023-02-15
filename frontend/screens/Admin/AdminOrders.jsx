@@ -1,52 +1,28 @@
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {defaultStyle, colors} from '../styles/styles';
-import Header from '../components/Header';
-import Loader from '../components/Loader';
-import {Headline} from 'react-native-paper';
-import OrderItem from '../components/OrderItem';
+import {colors, defaultStyle} from '../../styles/styles';
+import Header from '../../components/Header';
+import Loader from '../../components/Loader';
+import OrderItem from '../../components/OrderItem';
+import {orders} from '../Orders';
 
-export const orders = [
-  {
-    _id: 'asdasd',
-    shippingInfo: {
-      address: '213 easert',
-      city: 'Pune',
-      country: 'INDIA',
-      pinCode: '411041',
-    },
-    createdAt: '12-4-23T7s7fys7ydf',
-    orderStatus: 'Processing',
-    paymentMethod: 'COD',
-    totalAmount: 20000,
-  },
-  {
-    _id: 'asdddasd',
-    shippingInfo: {
-      address: '213 easert',
-      city: 'Pune',
-      country: 'INDIA',
-      pinCode: '411041',
-    },
-    createdAt: '12-4-23T7s7fys7ydf',
-    orderStatus: 'Processing',
-    paymentMethod: 'ONLINE',
-    totalAmount: 999999999,
-  },
-];
-
-const Orders = () => {
+const AdminOrders = () => {
   const loading = false;
-
+  const processOrderLoading = false;
+  const updateHandler = () => {};
   return (
-    <View style={{...defaultStyle, backgroundColor: colors.color5}}>
+    <View
+      style={{
+        ...defaultStyle,
+        backgroundColor: colors.color5,
+      }}>
       <Header back />
       <View
         style={{
           marginBottom: 20,
           paddingTop: 70,
         }}>
-        <Text style={styles.heading}>Edit Profile</Text>
+        <Text style={styles.heading}>All Orders</Text>
       </View>
 
       {loading ? (
@@ -70,6 +46,8 @@ const Orders = () => {
                   orderedOn={item.createdAt.split('T')[0]}
                   adddress={`${item.shippingInfo.address}, ${item.shippingInfo.city}, ${item.shippingInfo.country} ${item.shippingInfo.pinCode}`}
                   admin
+                  updateHandler={updateHandler}
+                  loading={processOrderLoading}
                 />
               ))
             ) : (
@@ -82,7 +60,7 @@ const Orders = () => {
   );
 };
 
-export default Orders;
+export default AdminOrders;
 
 const styles = StyleSheet.create({
   heading: {
