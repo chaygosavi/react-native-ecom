@@ -5,6 +5,8 @@ import Toast from 'react-native-toast-message';
 import AdminOrders from './screens/Admin/AdminOrders';
 import AdminPanel from './screens/Admin/AdminPanel';
 import Categories from './screens/Admin/Categories';
+import NewProduct from './screens/Admin/NewProduct';
+import UpdateProduct from './screens/Admin/UpdateProduct';
 import Cart from './screens/Cart';
 import ChangePassword from './screens/ChangePassword';
 import ConfirmOrder from './screens/ConfirmOrder';
@@ -44,6 +46,8 @@ const App = () => {
           <Stack.Screen name="adminpanel" component={AdminPanel} />
           <Stack.Screen name="categories" component={Categories} />
           <Stack.Screen name="adminorders" component={AdminOrders} />
+          <Stack.Screen name="updateproduct" component={UpdateProduct} />
+          <Stack.Screen name="newproduct" component={NewProduct} />
         </Stack.Group>
       </Stack.Navigator>
       <Toast position="top" />
