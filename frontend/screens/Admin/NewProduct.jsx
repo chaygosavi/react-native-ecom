@@ -5,7 +5,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {colors, defaultStyle, inputStyle} from '../../styles/styles';
 import Header from '../../components/Header';
 import Loader from '../../components/Loader';
@@ -18,7 +18,7 @@ const inputOptions = {
   activeOutlineColor: colors.color1,
 };
 
-const NewProduct = ({navigation, route}) => {
+const NewProduct = ({navigation, route: {params}}) => {
   const [name, setName] = useState('');
   const [image, setImage] = useState('');
   const [description, setDescription] = useState('');
@@ -41,6 +41,12 @@ const NewProduct = ({navigation, route}) => {
     },
   ]);
   const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    if (params?.image) {
+      setImage(params?.image);
+    }
+  }, [params]);
+
   const loading = false;
 
   const submitHandler = () => {

@@ -33,6 +33,17 @@ const UpdateProduct = ({navigation, route: {params: id}}) => {
       category: 'Cloths',
     },
   ]);
+
+  const images = [
+    {
+      url: 'https://images.unsplash.com/photo-1661956600684-97d3a4320e45?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+      _id: 'asdsadasd',
+    },
+    {
+      url: 'https://images.unsplash.com/photo-1661956600684-97d3a4320e45?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
+      _id: 'asdsaddasd',
+    },
+  ];
   const [visible, setVisible] = useState(false);
   const loading = false;
   const loadingOther = false;
@@ -77,7 +88,7 @@ const UpdateProduct = ({navigation, route: {params: id}}) => {
                 onPress={() =>
                   navigation.navigate('productimages', {
                     id,
-                    images: [],
+                    images,
                   })
                 }>
                 Manage Images

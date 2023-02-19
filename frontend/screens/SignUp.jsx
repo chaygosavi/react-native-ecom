@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -10,7 +10,7 @@ import {Avatar, Button, TextInput} from 'react-native-paper';
 import Footer from '../components/Footer';
 import {colors, defaultStyle, inputStyle} from '../styles/styles';
 
-const SignUp = ({navigation}) => {
+const SignUp = ({navigation, route}) => {
   const [avatar, setAvatar] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -19,6 +19,12 @@ const SignUp = ({navigation}) => {
   const [city, setCity] = useState('');
   const [country, setCountry] = useState('');
   const [pinCode, setPinCode] = useState('');
+
+  useEffect(() => {
+    if (route.params?.image) {
+      setAvatar(route.params.image);
+    }
+  }, [route.params]);
 
   const inputOptions = {
     style: inputStyle,

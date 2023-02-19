@@ -6,7 +6,9 @@ import AdminOrders from './screens/Admin/AdminOrders';
 import AdminPanel from './screens/Admin/AdminPanel';
 import Categories from './screens/Admin/Categories';
 import NewProduct from './screens/Admin/NewProduct';
+import ProductImages from './screens/Admin/ProductImages';
 import UpdateProduct from './screens/Admin/UpdateProduct';
+import Camera from './screens/Camera';
 import Cart from './screens/Cart';
 import ChangePassword from './screens/ChangePassword';
 import ConfirmOrder from './screens/ConfirmOrder';
@@ -48,6 +50,8 @@ const App = () => {
           <Stack.Screen name="adminorders" component={AdminOrders} />
           <Stack.Screen name="updateproduct" component={UpdateProduct} />
           <Stack.Screen name="newproduct" component={NewProduct} />
+          <Stack.Screen name="productimages" component={ProductImages} />
+          <Stack.Screen name="camera" component={Camera} />
         </Stack.Group>
       </Stack.Navigator>
       <Toast position="top" />
