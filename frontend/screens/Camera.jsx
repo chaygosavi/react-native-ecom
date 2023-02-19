@@ -55,7 +55,7 @@ const Camera = ({navigation: {navigate}, route: {params}}) => {
     // console.log(cameraRef.current);
     // console.log(123);
     const result = await cameraRef.current.takePhoto();
-    console.log('result', 'file://' + result.path);
+    // console.log('result', 'file://' + result.path);
 
     if (params?.newProduct)
       return navigate('newproduct', {
