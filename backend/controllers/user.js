@@ -37,6 +37,20 @@ export const signup = asyncError(async (req, res, next) => {
   sendToken(user, res, "Registered Successfully" + user.name, 201);
 });
 
+export const logOut = asyncError(async (req, res, next) => {
+  res
+    .status(200)
+    .cookie("token", "", {
+      secure: process.env.NODE_ENV === "Development" ? false : true,
+      httppOnly: process.env.NODE_ENV === "Development" ? false : true,
+      sameSite: process.env.NODE_ENV === "Development" ? false : "none",
+      expires: new Date(Date.now()),
+    })
+    .json({
+      success: true,
+      message: "Logged Out Successfully",
+    });
+});
 export const getMyProfile = asyncError(async (req, res, next) => {
   const user = await User.findById(req.user._id);
 
