@@ -1,16 +1,18 @@
-import { Schema, model } from "mongoose";
+import mongoose from "mongoose";
 import validator from "validator";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-const schema = new Schema({
+const schema = new mongoose.Schema({
   name: {
     type: String,
+    required: [true, "Please Enter Name"],
   },
+
   email: {
     type: String,
     required: [true, "Please Enter Email"],
-    unique: [true, "Email Already Exists"],
+    unique: [true, "Email Already Exist"],
     validate: validator.isEmail,
   },
   password: {
@@ -35,11 +37,13 @@ const schema = new Schema({
     type: Number,
     required: true,
   },
+
   role: {
     type: String,
     enum: ["admin", "user"],
     default: "user",
   },
+
   avatar: {
     public_id: String,
     url: String,
@@ -49,6 +53,7 @@ const schema = new Schema({
 });
 
 schema.pre("save", async function (next) {
+  if (!this.isModified("password")) return next();
   this.password = await bcrypt.hash(this.password, 10);
 });
 
@@ -58,8 +63,8 @@ schema.methods.comparePassword = async function (enteredPassword) {
 
 schema.methods.generateToken = function () {
   return jwt.sign({ _id: this._id }, process.env.JWT_SECRET, {
-    expiresIn: "18d",
+    expiresIn: "15d",
   });
 };
 
-export const User = model("User", schema);
+export const User = mongoose.model("User", schema);
