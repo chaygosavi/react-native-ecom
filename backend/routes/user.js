@@ -7,6 +7,8 @@ import {
   updateProfile,
   changePassword,
   updatePic,
+  forgetPassword,
+  resetPassword,
 } from "../controllers/user.js";
 import { isAuthenticated } from "../middlewares/auth.js";
 import { singleUpload } from "../middlewares/multer.js";
@@ -21,6 +23,10 @@ router.get("/logout", isAuthenticated, logOut);
 // Updating routes
 router.put("/updateprofile", isAuthenticated, updateProfile);
 router.put("/changepassword", isAuthenticated, changePassword);
-router.put("/updatepic", isAuthenticated, updatePic);
+router.put("/updatepic", isAuthenticated, singleUpload, updatePic);
+
+// Forget and reset Passwords
+
+router.route("/forgetpassword").post(forgetPassword).put(resetPassword);
 
 export default router;

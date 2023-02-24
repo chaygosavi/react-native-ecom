@@ -128,6 +128,40 @@ export const changePassword = asyncError(async (req, res, next) => {
 export const updatePic = asyncError(async (req, res, next) => {
   const user = await User.findById(req.user._id);
 
+  // console.log(req.file);
+  const file = getDataUri(req.file);
+  console.log("file", file);
+
+  await cloudinary.v2.uploader.destroy(user.avatar.public_id);
+  //   Cloudinary
+  const myCloud = await cloudinary.v2.uploader.upload(file.content);
+  console.log("link", file.content);
+
+  user.avatar = {
+    public_id: myCloud.public_id,
+    url: myCloud.secure_url,
+  };
+
+  await user.save();
+
+  res.status(200).json({
+    success: true,
+    message: "Avatar Updated Successfully",
+  });
+});
+
+export const forgetPassword = asyncError(async (req, res, next) => {
+  const user = await User.findById(req.user._id);
+
+  res.status(200).json({
+    success: true,
+    user,
+  });
+});
+
+export const resetPassword = asyncError(async (req, res, next) => {
+  const user = await User.findById(req.user._id);
+
   res.status(200).json({
     success: true,
     user,
