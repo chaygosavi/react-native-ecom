@@ -1,5 +1,6 @@
 import DataUriParser from "datauri/parser.js";
 import path from "path";
+import { createTransport } from "nodemailer";
 
 export const sendToken = (user, res, message, statusCode) => {
   const token = user.generateToken();
@@ -23,4 +24,14 @@ export const getDataUri = (file) => {
   const parser = new DataUriParser();
   const extName = path.extname(file.originalname).toString();
   return parser.format(extName, file.buffer);
+};
+
+export const sendEmail = async (subject, to, text) => {
+  const transporter = createTransport({});
+
+  await transporter.sendMail({
+    to,
+    subject,
+    text,
+  });
 };

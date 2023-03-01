@@ -151,11 +151,26 @@ export const updatePic = asyncError(async (req, res, next) => {
 });
 
 export const forgetPassword = asyncError(async (req, res, next) => {
-  const user = await User.findById(req.user._id);
+  const { email } = req.body;
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    next(new ErrorHandler("Incorrect Email", 404));
+  }
+
+  const otp = Math.floor(Math.random() * (999999 - 100000) + 100000);
+  const otp_expire = 15 * 60 * 1000;
+
+  user.otp = otp;
+  user.otp_expire = new Date(Date.now() + otp_expire);
+  await user.save();
+  console.log(otp);
+
+  // sendEmail
 
   res.status(200).json({
     success: true,
-    user,
+    message: "Email Sent to " + user.email,
   });
 });
 
